@@ -1,0 +1,13 @@
+#!/bin/bash
+
+curl -s http://localhost:11434/api/chat -d "{
+  \"model\": \"gemma3:1b\",
+  \"stream\": false,
+  \"messages\": [
+    {
+      \"role\": \"user\",
+      \"content\": \"$*. Give only short responses.\"
+    }
+  ]
+}" | jq -r '.message.content'
+
